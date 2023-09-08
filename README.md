@@ -1,4 +1,6 @@
-# ComposeAnimationGuideDesktop
+# Compose Animation Guide - Desktop
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![IntelliJ IDE](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 
 A desktop application to help you to choose the correct Animation API for your animation in an Android Compose project.
 
