@@ -33,8 +33,18 @@ compose.desktop {
     application {
         mainClass = "MainKt"
         nativeDistributions {
+            macOS {
+                iconFile.set(project.file("ic_android.icns"))
+            }
+            windows {
+                iconFile.set(project.file("ic_android.ico"))
+            }
+            linux {
+                iconFile.set(project.file("ic_android.png"))
+            }
+
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "WhatIsTheAnimationCompose"
+            packageName = "Compose Animation Guide"
             packageVersion = "1.0.0"
         }
     }

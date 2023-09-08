@@ -23,9 +23,7 @@ import component.AnswerButton
 import domain.Answer.NO
 import domain.Answer.YES
 import domain.IS_MY_ANIMATION_MORE_LIKE_ART
-import domain.utils.isNull
-import domain.utils.isQuestion
-import domain.utils.openInBrowser
+import domain.utils.*
 import theme.BLUE_ANSWER
 import theme.GREEN_QUESTION
 import theme.WhatIsAnimationComposeTheme
@@ -35,7 +33,7 @@ import theme.WhatIsAnimationComposeTheme
 @Preview
 fun App() {
     var isStarted by remember { mutableStateOf(false) }
-    var currentExpression = remember { mutableStateOf(IS_MY_ANIMATION_MORE_LIKE_ART ?: null) }
+    val currentExpression = remember { mutableStateOf(IS_MY_ANIMATION_MORE_LIKE_ART ?: null) }
 
     val expressionCardInteractionSource = remember { MutableInteractionSource() }
     val yesInteractionSource = remember { MutableInteractionSource() }
@@ -45,14 +43,29 @@ fun App() {
     val isYesHovered by yesInteractionSource.collectIsHoveredAsState()
     val isNoHovered by noInteractionSource.collectIsHoveredAsState()
 
-    val expressionCardScaleSize by animateFloatAsState(if (isExpressionCardHovered) 1.1f else 1f)
-    val yesScaleSize by animateFloatAsState(if (isYesHovered) 1.1f else 1f)
-    val noScaleSize by animateFloatAsState(if (isNoHovered) 1.1f else 1f)
+    val expressionCardScaleSize by animateFloatAsState(
+        if (isExpressionCardHovered)
+            HOVERED_ITEM_SCALE
+        else
+            DEFAULT_ITEM_SCALE
+    )
+    val yesScaleSize by animateFloatAsState(
+        if (isYesHovered)
+            HOVERED_ITEM_SCALE
+        else
+            DEFAULT_ITEM_SCALE
+    )
+    val noScaleSize by animateFloatAsState(
+        if (isNoHovered)
+            HOVERED_ITEM_SCALE
+        else
+            DEFAULT_ITEM_SCALE
+    )
 
     WhatIsAnimationComposeTheme {
         val expression = currentExpression.value
 
-        Column(modifier = Modifier.fillMaxSize().padding(48.dp)) {
+        Column(modifier = Modifier.fillMaxSize().padding(36.dp)) {
             Image(
                 modifier = Modifier.fillMaxSize(0.2f),
                 painter = painterResource("drawable/ic_android_developers.svg"),
@@ -126,7 +139,12 @@ fun App() {
                                                     )
                                                 }
                                             ) {
-                                                Text(text = link.description, fontWeight = FontWeight.SemiBold)
+                                                Text(
+                                                    modifier = Modifier.padding(8.dp),
+                                                    text = link.description,
+                                                    textAlign = TextAlign.Center,
+                                                    fontWeight = FontWeight.SemiBold
+                                                )
                                             }
                                         }
                                     }
@@ -139,9 +157,9 @@ fun App() {
                                     .height(54.dp),
                                 border = BorderStroke(2.dp, Color.DarkGray),
                                 onClick = {
-                                    isStarted = false
+                                    currentExpression.value = IS_MY_ANIMATION_MORE_LIKE_ART
                                 }) {
-                                Text("RESTART", fontWeight = FontWeight.Bold)
+                                Text(text = RESTART, fontWeight = FontWeight.Bold)
                             }
                         }
                     }
@@ -154,7 +172,7 @@ fun App() {
                         currentExpression.value = IS_MY_ANIMATION_MORE_LIKE_ART
                     }
                 ) {
-                    Text("START", fontWeight = FontWeight.Black)
+                    Text(text = START, fontWeight = FontWeight.Black)
                 }
             }
         }

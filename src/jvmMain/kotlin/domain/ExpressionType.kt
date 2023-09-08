@@ -1,4 +1,5 @@
 package domain
 
-class ExpressionType {
+enum class ExpressionType {
+    QUESTION, ANSWER
 }
