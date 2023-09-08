@@ -9,3 +9,11 @@ It's based in a complete decision tree officially distributed by Android.
 ![Flowchart describing the decion tree for choosing the appropriate animation API](https://github.com/bernardoslailati/ComposeAnimationGuideDesktop/assets/44252209/2d8898d3-af75-4043-a022-2f961f18de59)
       
 See more about the content at [Animations in Compose](https://developer.android.com/jetpack/compose/animation/introduction).
+
+## Generate the executable
+
+It's easy!
+
+Run in the command line, inside your project's root folder: `.\gradlew :createDistributable`
+
+The files will be generated at `./build/compose/binaries/main/app/Compose Animation Guide`.
