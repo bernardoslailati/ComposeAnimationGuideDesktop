@@ -10,7 +10,7 @@ It's based in a complete decision tree officially distributed by Android.
       
 See more about the content at [Animations in Compose](https://developer.android.com/jetpack/compose/animation/introduction).
 
-## Generate the executable
+## Generate the executables
 
 It's easy!
 
